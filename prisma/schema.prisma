@@ -1,0 +1,12 @@
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+model Users {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  password     String
+  email        String?
+  accessLevel  Int      @default(1)
+}
