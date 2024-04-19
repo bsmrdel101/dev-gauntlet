@@ -26,9 +26,25 @@
 
   h2 {
     margin-bottom: 0.5rem;
+    font-size: var(--font-lg);
+
+    span {
+      font-size: var(--font-sm);
+      font-style: italic;
+      font-weight: 400;
+    }
+  }
+
+  &__difficulty {
+    margin: 0 0 0.5rem;
+
+    &--easy { color: var(--easy) }
+    &--medium { color: var(--medium) }
+    &--hard { color: var(--hard) }
   }
 
   &__desc {
     margin-top: 0.3rem;
+    font-size: var(--font-md);
   }
 }
