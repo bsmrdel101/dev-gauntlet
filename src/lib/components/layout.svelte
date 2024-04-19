@@ -6,6 +6,7 @@
   import { initApp } from "$lib/scripts/index";
   import { usersData } from "$lib/scripts/index";
 
+  export let title = '';
   let users;
 
   $: {
@@ -17,6 +18,10 @@
   });
 </script>
 
+
+<svelte:head>
+  <title>{ title ? `${title} | Dev Gaunlet` : 'Dev Gauntlet' }</title>
+</svelte:head>
 
 <div class="layout">
   <Navbar />

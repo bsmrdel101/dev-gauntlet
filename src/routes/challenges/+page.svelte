@@ -11,7 +11,7 @@
 </script>
 
 
-<Layout>
+<Layout title="Challenges">
   <h1>Challenges</h1>
   <div class="challenges">
     {#each challenges as challenge}
