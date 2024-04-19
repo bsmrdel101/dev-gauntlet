@@ -6,6 +6,15 @@ CREATE TABLE "users" (
   "accessLevel" INTEGER NOT NULL DEFAULT 1
 );
 
+CREATE TABLE "challenges" (
+  "id" SERIAL PRIMARY KEY,
+  "title" TEXT NOT NULL,
+  "desc" TEXT,
+  "difficulty" TEXT,
+  "image" TEXT,
+  "platform" TEXT
+);
+
 
 -------------------------
 -- INSERT DEFAULT DATA --
@@ -16,3 +25,9 @@ VALUES
   ('dev', '$2a$10$3rvmJEyHfGUQhLpuhKBmneeK76Zvw2d7wO0KYob8YKAF.DirAKcga', 'fireknights318@gmail.com', 2),
   ('test', '$2a$10$3rvmJEyHfGUQhLpuhKBmneeK76Zvw2d7wO0KYob8YKAF.DirAKcga', null, 1)
 ;
+
+INSERT INTO "challenges" ("title", "desc", "difficulty", "image", "platform")
+VALUES
+  ('Challenge 1', 'This is the first challenge', 'easy', 'https://via.placeholder.com/150', 'web'),
+  ('Challenge 2', 'This is the second challenge', 'medium', 'https://via.placeholder.com/150', 'web'),
+  ('Challenge 3', 'This is the third challenge', 'hard', 'https://via.placeholder.com/150', 'web')

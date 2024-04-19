@@ -4,17 +4,16 @@
   import Navbar from "./Navbar.svelte";
   import { api } from "$lib/scripts/config/api";
   import { initApp } from "$lib/scripts/index";
-  import { users } from "$lib/scripts/index";
+  import { usersData } from "$lib/scripts/index";
 
-  let userData;
+  let users;
 
   $: {
-    userData = $users;
+    users = $usersData;
   }
 
   onMount(async () => {
     await initApp();
-    console.log(userData);
   });
 </script>
 
