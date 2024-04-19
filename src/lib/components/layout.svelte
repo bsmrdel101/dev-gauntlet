@@ -3,9 +3,18 @@
   import { writable } from "svelte/store";
   import Navbar from "./Navbar.svelte";
   import { api } from "$lib/scripts/config/api";
+  import { initApp } from "$lib/scripts/index";
+  import { users } from "$lib/scripts/index";
 
-  onMount(() => {
-    initApp();
+  let userData;
+
+  $: {
+    userData = $users;
+  }
+
+  onMount(async () => {
+    await initApp();
+    console.log(userData);
   });
 </script>
 
