@@ -1,15 +1,11 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
   import Navbar from "./Navbar.svelte";
+  import { api } from "$lib/scripts/config/api";
 
-  export const users = writable([]);
-
-  onMount(async () => {
-    const res = await fetch('/api/users');
-    const userData = await res.json();
-    users.set(userData);
-    console.log(userData);
+  onMount(() => {
+    initApp();
   });
 </script>
 
