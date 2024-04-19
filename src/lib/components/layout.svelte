@@ -1,8 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { writable } from "svelte/store";
   import Navbar from "./Navbar.svelte";
-  import { api } from "$lib/scripts/config/api";
   import { initApp } from "$lib/scripts/index";
   import { usersData } from "$lib/scripts/index";
 
