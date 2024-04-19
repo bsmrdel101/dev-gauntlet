@@ -7,6 +7,8 @@
     "dev": "vite dev",
     "build": "vite build",
     "docker:setup": "rm -rf ./.postgres-data && docker-compose up",
+    "prisma:migrate": "npx prisma migrate dev --name init",
+    "prisma:gen": "npx prisma generate",
     "lint": "eslint . --fix"
   },
   "devDependencies": {
@@ -19,6 +21,7 @@
     "@typescript-eslint/parser": "^7.0.0",
     "eslint": "^8.56.0",
     "eslint-plugin-svelte": "^2.35.1",
+    "prisma": "^5.12.1",
     "sass": "^1.75.0",
     "svelte": "^4.2.7",
     "svelte-check": "^3.6.0",
@@ -26,5 +29,8 @@
     "tslib": "^2.4.1",
     "typescript": "^5.0.0",
     "vite": "^5.0.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.12.1"
   }
 }
