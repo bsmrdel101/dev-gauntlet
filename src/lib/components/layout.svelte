@@ -20,7 +20,7 @@
 
 
 <svelte:head>
-  <title>{ title ? `${title} | Dev Gaunlet` : 'Dev Gauntlet' }</title>
+  <title>{ title ? `${title} | Dev Gauntlet` : 'Dev Gauntlet' }</title>
 </svelte:head>
 
 <div class="layout">
