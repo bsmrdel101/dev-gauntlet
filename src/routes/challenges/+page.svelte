@@ -2,6 +2,7 @@
   import Layout from "$lib/components/Layout.svelte";
 </script>
 
+
 <Layout>
   <h1>Challenges</h1>
 </Layout>

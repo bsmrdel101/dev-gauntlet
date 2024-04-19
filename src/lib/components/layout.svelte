@@ -1,5 +1,14 @@
 <script>
+  import { onMount } from "svelte";
   import Navbar from "./Navbar.svelte";
+
+  let users = [];
+
+  onMount(async () => {
+    const res = await fetch('/api/users');
+    users = await res.json();
+    console.log(users);
+  });
 </script>
 
 
