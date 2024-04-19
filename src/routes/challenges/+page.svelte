@@ -19,3 +19,10 @@
     {/each}
   </div>
 </Layout>
+
+
+<style lang="scss">
+  h1 {
+    text-align: center;
+  }
+</style>

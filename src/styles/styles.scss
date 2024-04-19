@@ -4,6 +4,8 @@
 
 * {
   box-sizing: border-box;
+  scrollbar-width: auto;
+  scrollbar-color: var(--red-1) var(--bg-0);
 }
 
 body {

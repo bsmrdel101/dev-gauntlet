@@ -42,6 +42,16 @@
       flex-direction: column;
       width: 100%;
       height: 100%;
+      overflow-y: auto;
+      max-height: 90vh;
+      
+      @media (max-height: 875px) {
+        max-height: 87vh;
+      }
+
+      @media (max-height: 681px) {
+        max-height: 84vh;
+      }
     }
   }
 </style>
