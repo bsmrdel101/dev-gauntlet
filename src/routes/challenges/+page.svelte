@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ChallengeComponent from "$lib/components/Challenge.svelte";
   import Layout from "$lib/components/Layout.svelte";
   import { challengesData } from "$lib/scripts/index";
 
@@ -12,10 +13,9 @@
 
 <Layout>
   <h1>Challenges</h1>
-  {#each challenges as challenge}
-    <div>
-      <h2>{challenge.title}</h2>
-      <p>{challenge.desc}</p>
-    </div>
-  {/each}
+  <div class="challenges">
+    {#each challenges as challenge}
+      <ChallengeComponent challenge={challenge} />
+    {/each}
+  </div>
 </Layout>

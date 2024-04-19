@@ -1,0 +1,31 @@
+.challenges {
+  display: flex;
+  gap: 2rem;
+}
+
+.challenge {
+  text-align: center;
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 18rem;
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+  text-decoration: none;
+  color: white;
+  
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: rgba(182, 16, 16, 0.35) 0px 8px 18px;
+    border: 2px solid var(--red-0);
+  }
+
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  &__desc {
+    margin-top: 0.3rem;
+  }
+}
