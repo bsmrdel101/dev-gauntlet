@@ -38,6 +38,7 @@
   &__difficulty {
     margin: 0 0 0.5rem;
 
+    &--beginner { color: var(--beginner) }
     &--easy { color: var(--easy) }
     &--medium { color: var(--medium) }
     &--hard { color: var(--hard) }
