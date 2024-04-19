@@ -24,7 +24,7 @@
     border: 2px solid var(--red-0);
   }
 
-  h2 {
+  &__title {
     margin-bottom: 0.5rem;
     font-size: var(--font-lg);
 
@@ -41,6 +41,10 @@
     &--easy { color: var(--easy) }
     &--medium { color: var(--medium) }
     &--hard { color: var(--hard) }
+  }
+
+  &__cover-img {
+    max-width: 20rem;
   }
 
   &__desc {
