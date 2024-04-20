@@ -10,7 +10,7 @@ export const GET: RequestHandler<any> = async ({ params }) => {
       SELECT * FROM challenges
       WHERE id = $1;
     `, [id]);
-    return Res(res.rows[0]);
+    return Res({ body: res.rows[0] });
   } catch (error) {
     console.error(error);
     return Res(500);

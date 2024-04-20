@@ -5,24 +5,31 @@ interface API {
   delete: (route: string, body: Record<string, unknown>, headers?: Record<string, string>) => void
 }
 
+interface ResParams {
+  status?: 500 | 400 | 401
+  body?: Promise<Response>
+  headers?: Record<string, string>
+  error?: string
+}
 
-export const Res = async (res: any): Promise<Response> => {
-  if (res === 500) {
-    return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
+
+export const Res = async ({ status, body, headers, error = '' }: ResParams): Promise<Response> => {
+  if (status && status !== 200) {
+    return new Response(JSON.stringify({ error: error }), {
+      status,
+      headers: { ...headers, 'Content-Type': 'application/json' }
     });
   } else {
-    return new Response(JSON.stringify(res), {
+    return new Response(body ? JSON.stringify(body) : '', {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { ...headers, 'Content-Type': 'application/json' }
     });
   }
 };
 
 export const api: API = {
   get: async (route: string, headers?: Record<string, string>) => {
-    const res = await fetch(route);
+    const res = await fetch(route, { ...headers, credentials: 'include' });
     return await res.json();
   },
   post: async (route: string, body: Record<string, unknown>, headers?: Record<string, string>) => {
@@ -30,11 +37,11 @@ export const api: API = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        credentials: 'include',
         ...headers
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
-    return await res.json();
   },
   put: async (route: string, body: Record<string, unknown>, headers?: Record<string, string>) => {
     await fetch(route, {
@@ -43,7 +50,8 @@ export const api: API = {
         'Content-Type': 'application/json',
         ...headers
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
+      credentials: 'include'
     });
   },
   delete: async (route: string, body: Record<string, unknown>, headers?: Record<string, string>) => {
@@ -53,7 +61,8 @@ export const api: API = {
         'Content-Type': 'application/json',
         ...headers
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
+      credentials: 'include'
     });
   },
 };
