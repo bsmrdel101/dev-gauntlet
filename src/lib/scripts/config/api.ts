@@ -66,3 +66,22 @@ export const api: API = {
     });
   },
 };
+
+// export const getBody = async (req: Request) => {
+//   const reader = req.request.body.getReader();
+//   let result = await reader.read();
+//   let chunks = [];
+//   while (!result.done) {
+//     chunks.push(result.value);
+//     result = await reader.read();
+//   }
+//   return Buffer.concat(chunks).toString('utf-8');
+// };
+
+export const getUrlParams = (req: Request) => {
+  const url = req.request.url;
+  const parts = url.split('/');
+  const index = parts.indexOf('api') + 2;  
+  const params = parts.slice(index);
+  console.log(params);
+};

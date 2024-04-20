@@ -2,13 +2,13 @@
   import { onMount } from "svelte";
   import Navbar from "./Navbar.svelte";
   import { initApp } from "$lib/scripts/index";
-  import { usersData } from "$lib/scripts/index";
+  import { userData } from "$lib/scripts/index";
 
   export let title = '';
-  let users;
+  let user;
 
   $: {
-    users = $usersData;
+    user = $userData;
   }
 
   onMount(async () => {

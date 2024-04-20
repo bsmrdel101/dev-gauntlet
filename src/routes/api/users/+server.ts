@@ -1,4 +1,4 @@
-import { Res } from '$lib/scripts/config/api';
+import { Res, getUrlParams } from '$lib/scripts/config/api';
 import { client } from '$lib/scripts/config/pool.server';
 import jwt from 'jsonwebtoken';
 import { RequestHandler } from '@sveltejs/kit';
@@ -23,8 +23,8 @@ export const POST: RequestHandler = async (req) => {
   
   if (user.rows.length > 0) {
     const match = await bcrypt.compare(password, user.rows[0].password);
-    if (match) {
-      const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY);
+    if (match) {      
+      const token = jwt.sign({ id: user.rows[0].id }, process.env.SECRET_KEY);
       return Res({
         headers: {
           'Set-Cookie': `token=${token}; HttpOnly; SameSite=Lax; Path=/;`,
@@ -41,10 +41,11 @@ export const POST: RequestHandler = async (req) => {
 export const GET: RequestHandler = async (req) => {
   try {
     const token = req.cookies.get('token');
-    if (!token) return Res([]);
+    if (!token) return Res({ body: [] });
     const data = jwt.verify(token, process.env.SECRET_KEY);
     const res = await client.query('SELECT * FROM users WHERE id = $1', [data.id]);
-    return Res({ body: res.rows });
+    const { password, ...userWithoutPassword } = res.rows[0];
+    return Res({ body: userWithoutPassword });
   } catch (err) {
     console.error(err);
     return Res(500);
