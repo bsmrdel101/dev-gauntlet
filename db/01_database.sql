@@ -15,7 +15,7 @@ CREATE TABLE "challenges" (
   "platform" TEXT
 );
 
-CREATE TABLE "challenge_instructions" (
+CREATE TABLE "challenge_content" (
   "id" SERIAL PRIMARY KEY,
   "challengeId" INTEGER NOT NULL REFERENCES "challenges"(id) ON DELETE CASCADE,
   "tools" TEXT,
@@ -50,7 +50,7 @@ VALUES
   ('Canvas', 'This is the tenth challenge', 'hard', 'https://via.placeholder.com/150', 'web');
 
 -- If different tools need different instructions, you can create another row instead of adding it to the tools array
-INSERT INTO "challenge_instructions" ("challengeId", "tools", "acceptanceCriteria", "instructions", "stretchGoals")
+INSERT INTO "challenge_content" ("challengeId", "tools", "acceptanceCriteria", "instructions", "stretchGoals")
 VALUES
   (1, '["JS", "TS", "React"]', '["Counter value can be increased and decreased.", "Counter UI is updated to reflect changes."]', '[]', '[]'),
   (2, '["JS", "TS", "React"]', '["Can fill out the form and submit it, the result should be displayed inside the <div> with the class ""output"".", "Can’t skip required fields."]', '[]', '["Use the confirm() method to ask if the user is sure they want to submit.", "Use EmailJS to send yourself an email containing the form results."]');

@@ -12,4 +12,14 @@ type Challenge = {
   difficulty: string
   image: string
   platform: string
+  challengeContent: ChallengeContent
+};
+
+type ChallengeContent = {
+  id: number
+  challengeId: number
+  tools: string[]
+  acceptanceCriteria: string[]
+  instructions: string[]
+  stretchGoals: string[]
 };
