@@ -12,7 +12,7 @@ type Challenge = {
   difficulty: string
   image: string
   platform: string
-  challengeContent: ChallengeContent
+  challengeContent: ChallengeContent[]
 };
 
 type ChallengeContent = {

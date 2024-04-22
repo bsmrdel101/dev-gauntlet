@@ -7,24 +7,17 @@ interface API {
 
 interface ResParams {
   status?: 500 | 400 | 401
-  body?: Promise<Response>
+  body?: Promise<Response> | []
   headers?: Record<string, string>
   error?: string
 }
 
 
 export const Res = async ({ status, body, headers, error = '' }: ResParams): Promise<Response> => {
-  if (status && status !== 200) {
-    return new Response(JSON.stringify({ error: error }), {
-      status,
-      headers: { ...headers, 'Content-Type': 'application/json' }
-    });
-  } else {
-    return new Response(body ? JSON.stringify(body) : '', {
-      status: 200,
-      headers: { ...headers, 'Content-Type': 'application/json' }
-    });
-  }
+  return new Response(body ? JSON.stringify(body) : '', {
+    status,
+    headers: { ...headers, 'Content-Type': 'application/json' }
+  });
 };
 
 export const api: API = {
@@ -65,23 +58,4 @@ export const api: API = {
       credentials: 'include'
     });
   },
-};
-
-// export const getBody = async (req: Request) => {
-//   const reader = req.request.body.getReader();
-//   let result = await reader.read();
-//   let chunks = [];
-//   while (!result.done) {
-//     chunks.push(result.value);
-//     result = await reader.read();
-//   }
-//   return Buffer.concat(chunks).toString('utf-8');
-// };
-
-export const getUrlParams = (req: Request) => {
-  const url = req.request.url;
-  const parts = url.split('/');
-  const index = parts.indexOf('api') + 2;  
-  const params = parts.slice(index);
-  console.log(params);
 };

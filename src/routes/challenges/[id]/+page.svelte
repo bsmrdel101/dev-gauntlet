@@ -7,9 +7,12 @@
   let { params } = $page;
 
   let challenge: Challenge;
+  let selectedTool: string;
+  
 
   onMount(async () => {
     challenge = await api.get(`/api/challenges/${params.id}`);
+    selectedTool = challenge.challengeContent[0].tools[0];
   });
 </script>
 
@@ -19,7 +22,39 @@
     <h3 class={`challenge__difficulty challenge__difficulty--${challenge.difficulty}`}>{ capitalize(challenge.difficulty) }</h3>
     <h1 class="challenge__title">{ challenge.title } <span>{ challenge.platform }</span></h1>
     <img class="challenge__cover-img" src={challenge.image} alt={challenge.image} loading="lazy" draggable="false" />
+    {#each challenge.challengeContent as content}
+      {#each content.tools as tool}
+        <button class="challenge__tool-btn">{ tool }</button>
+      {/each}
+    {/each}
     <p class="challenge__desc">{ challenge.desc }</p>
+
+    {#each challenge.challengeContent.filter((c) => c.tools.includes(selectedTool)) as content}
+      <h3>Acceptance Criteria</h3>
+      <ul>
+        {#each content.acceptanceCriteria as criteria }
+          <li>{ criteria }</li>
+        {/each}
+      </ul>
+
+      {#if content.instructions.length > 0}
+        <h3>Instructions</h3>
+        <ul>
+          {#each content.instructions as instruction }
+            <li>{ instruction }</li>
+          {/each}
+        </ul>
+      {/if}
+
+      {#if content.stretchGoals.length > 0}
+        <h3>stretchGoals</h3>
+        <ul>
+          {#each content.stretchGoals as goal }
+            <li>{ goal }</li>
+          {/each}
+        </ul>
+      {/if}
+    {/each}
   {/if}
 </Layout>
 

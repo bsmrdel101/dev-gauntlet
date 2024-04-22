@@ -1,4 +1,4 @@
-import { Res, getUrlParams } from '$lib/scripts/config/api';
+import { Res } from '$lib/scripts/config/api';
 import { client } from '$lib/scripts/config/pool.server';
 import jwt from 'jsonwebtoken';
 import { RequestHandler } from '@sveltejs/kit';
@@ -7,7 +7,7 @@ import { config } from 'dotenv';
 config();
 
 
-export const POST: RequestHandler = async (req) => {
+export const POST: RequestHandler = async (req: any) => {
   const reader = req.request.body.getReader();
   let result = await reader.read();
   let chunks = [];
@@ -24,30 +24,30 @@ export const POST: RequestHandler = async (req) => {
   if (user.rows.length > 0) {
     const match = await bcrypt.compare(password, user.rows[0].password);
     if (match) {      
-      const token = jwt.sign({ id: user.rows[0].id }, process.env.SECRET_KEY);
+      const token = jwt.sign({ id: user.rows[0].id }, process.env.SECRET_KEY as string);
       return Res({
         headers: {
           'Set-Cookie': `token=${token}; HttpOnly; SameSite=Lax; Path=/;`,
         }
       });
     } else {
-      return Res(401, 'Invalid user credentials');
+      return Res({ status: 401, error: 'Invalid user credentials' });
     }
   } else {
-    return Res(401, 'User not found');
+    return Res({ status: 401, error: 'User not found' });
   }
 };
 
-export const GET: RequestHandler = async (req) => {
+export const GET: RequestHandler = async (req: any) => {
   try {
     const token = req.cookies.get('token');
     if (!token) return Res({ body: [] });
-    const data = jwt.verify(token, process.env.SECRET_KEY);
+    const data: any = jwt.verify(token, process.env.SECRET_KEY as string);
     const res = await client.query('SELECT * FROM users WHERE id = $1', [data.id]);
     const { password, ...userWithoutPassword } = res.rows[0];
     return Res({ body: userWithoutPassword });
   } catch (err) {
     console.error(err);
-    return Res(500);
+    return Res({ status: 500 });
   }
 };
