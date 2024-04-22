@@ -15,6 +15,15 @@ CREATE TABLE "challenges" (
   "platform" TEXT
 );
 
+CREATE TABLE "challenge_instructions" (
+  "id" SERIAL PRIMARY KEY,
+  "challengeId" INTEGER NOT NULL REFERENCES "challenges"(id) ON DELETE CASCADE,
+  "tools" TEXT,
+  "acceptanceCriteria" TEXT,
+  "instructions" TEXT,
+  "stretchGoals" TEXT
+);
+
 
 -------------------------
 -- INSERT DEFAULT DATA --
@@ -28,9 +37,9 @@ VALUES
 
 INSERT INTO "challenges" ("title", "desc", "difficulty", "image", "platform")
 VALUES
-  ('Counter', 'This is the first challenge', 'beginner', 'https://via.placeholder.com/150', 'web'),
-  ('HTML Form', 'This is the second challenge', 'beginner', 'https://via.placeholder.com/150', 'web'),
-  ('Photo Gallery', 'This is the third challenge', 'beginner', 'https://via.placeholder.com/150', 'web'),
+  ('Counter', 'Increment and decrement a number on screen. Remember that you can google problems when you get stuck.', 'beginner', 'https://via.placeholder.com/150', 'web'),
+  ('HTML Form', 'Learn how to create a form and handle the returned data.', 'beginner', 'https://via.placeholder.com/150', 'web'),
+  ('Photo Gallery', 'Board of photos that can be interacted with.', 'beginner', 'https://via.placeholder.com/150', 'web'),
   ('Challenge', 'This is the third challenge', 'beginner', 'https://via.placeholder.com/150', 'unity'),
   ('Challenge 4', 'This is the fourth challenge', 'easy', 'https://via.placeholder.com/150', 'web'),
   ('Challenge 5', 'This is the fifth challenge', 'easy', 'https://via.placeholder.com/150', 'web'),
@@ -39,3 +48,9 @@ VALUES
   ('Realtime Chat', 'This is the eighth challenge', 'medium', 'https://via.placeholder.com/150', 'web'),
   ('Inventory', 'This is the ninth challenge', 'hard', 'https://via.placeholder.com/150', 'web, unity'),
   ('Canvas', 'This is the tenth challenge', 'hard', 'https://via.placeholder.com/150', 'web');
+
+-- If different tools need different instructions, you can create another row instead of adding it to the tools array
+INSERT INTO "challenge_instructions" ("challengeId", "tools", "acceptanceCriteria", "instructions", "stretchGoals")
+VALUES
+  (1, '["JS", "TS", "React"]', '["Counter value can be increased and decreased.", "Counter UI is updated to reflect changes."]', '[]', '[]'),
+  (2, '["JS", "TS", "React"]', '["Can fill out the form and submit it, the result should be displayed inside the <div> with the class ""output"".", "Can’t skip required fields."]', '[]', '["Use the confirm() method to ask if the user is sure they want to submit.", "Use EmailJS to send yourself an email containing the form results."]');
