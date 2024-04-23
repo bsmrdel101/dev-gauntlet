@@ -49,7 +49,36 @@
   }
 
   &__desc {
-    margin-top: 0.3rem;
-    font-size: var(--font-md);
+    margin: 1rem 0 1.8rem;
+    font-size: var(--font-sm);
+  }
+
+  &__tool-btn-container {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  &__tool-btn {
+    border: none;
+    border-radius: 0.2rem;
+    background-color: var(--grey-dark-2);
+    color: white;
+    font-size: var(--font-sm);
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 1rem;
+      margin-right: 0.4rem;
+    }
+
+    &:hover {
+      transform: translateY(-0.25rem);
+      box-shadow: rgba(240, 46, 46, 0.4) 0px 5px, rgba(240, 46, 46, 0.3) 0px 10px, rgba(240, 46, 46, 0.2) 0px 15px, rgba(240, 46, 46, 0.1) 0px 20px, rgba(240, 46, 46, 0.05) 0px 25px;
+    }
   }
 }

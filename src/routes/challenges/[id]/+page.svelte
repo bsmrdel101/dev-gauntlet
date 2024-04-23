@@ -22,11 +22,15 @@
     <h3 class={`challenge__difficulty challenge__difficulty--${challenge.difficulty}`}>{ capitalize(challenge.difficulty) }</h3>
     <h1 class="challenge__title">{ challenge.title } <span>{ challenge.platform }</span></h1>
     <img class="challenge__cover-img" src={challenge.image} alt={challenge.image} loading="lazy" draggable="false" />
-    {#each challenge.challengeContent as content}
-      {#each content.tools as tool}
-        <button class="challenge__tool-btn">{ tool }</button>
+    <div class="challenge__tool-btn-container">
+      {#each challenge.challengeContent as content}
+        {#each content.tools as tool}
+          <button class="challenge__tool-btn">
+            <img src={`/images/${tool.toLowerCase()}.svg`} alt="Icon" />{ tool }
+          </button>
+        {/each}
       {/each}
-    {/each}
+    </div>
     <p class="challenge__desc">{ challenge.desc }</p>
 
     {#each challenge.challengeContent.filter((c) => c.tools.includes(selectedTool)) as content}
