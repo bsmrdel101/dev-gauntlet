@@ -29,7 +29,7 @@
     background-color: var(--grey-dark-1);
     border-radius: 1rem;
     transition: all 0.2s ease-in-out;
-    margin-top: 0.5rem;
+    margin: 0.5rem 0 1.3rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
     &:hover {

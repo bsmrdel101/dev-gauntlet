@@ -5,6 +5,7 @@
   import { api } from '$lib/scripts/config/api';
   import { capitalize } from '$lib/scripts/tools/utils';
   import { onMount } from 'svelte';
+  import Button from '$lib/components/Library/Button.svelte';
   let { params } = $page;
 
   let challenge: Challenge;
@@ -28,7 +29,7 @@
     <div class="challenge__tool-btn-container">
       {#each challenge.challengeContent as content}
         {#each content.tools as tool}
-          <button class="challenge__tool-btn" on:click={() => selectedTool = tool}>
+          <button class={`challenge__tool-btn${selectedTool === tool ? ' challenge__tool-btn--selected' : '' }`} on:click={() => selectedTool = tool}>
             <img src={`/images/${tool.toLowerCase()}.svg`} alt="Icon" />{ tool }
           </button>
         {/each}
@@ -65,6 +66,8 @@
     </div>
 
     {#if webEditorCompatible.includes(selectedTool)}<Editor />{/if}
+
+    <Button>Complete</Button>
   {/if}
 </Layout>
 

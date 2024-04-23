@@ -1,0 +1,11 @@
+.button {
+  width: fit-content;
+  border-radius: 0.3rem;
+  border: none;
+  color: white;
+  background-color: var(--grey-dark-2);
+  padding: 0.5rem;
+  font-size: var(--font-xsm);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}

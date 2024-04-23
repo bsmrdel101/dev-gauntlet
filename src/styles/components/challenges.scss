@@ -60,16 +60,20 @@
   }
 
   &__tool-btn {
-    border: none;
+    border: 2px solid transparent;
     border-radius: 0.2rem;
     background-color: var(--grey-dark-2);
     color: white;
     font-size: var(--font-sm);
     padding: 0.5rem;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     display: flex;
     align-items: center;
+
+    &--selected {
+      border: 2px solid var(--red-0);
+    }
 
     img {
       width: 1rem;
