@@ -37,7 +37,7 @@ VALUES
 
 INSERT INTO "challenges" ("title", "desc", "difficulty", "image", "platform")
 VALUES
-  ('Counter', 'Increment and decrement a number on screen. Remember that you can google problems when you get stuck.', 'beginner', 'https://via.placeholder.com/150', 'web, unity'),
+  ('Counter', 'Increment and decrement a number on screen. Remember that you can google problems when you get stuck.', 'beginner', '/images/counter/counter_0.png', 'web, unity'),
   ('HTML Form', 'Learn how to create a form and handle the returned data.', 'beginner', 'https://via.placeholder.com/150', 'web'),
   ('Photo Gallery', 'Board of photos that can be interacted with.', 'beginner', 'https://via.placeholder.com/150', 'web'),
   ('Challenge', 'This is the third challenge', 'beginner', 'https://via.placeholder.com/150', 'unity'),
@@ -52,6 +52,6 @@ VALUES
 -- If different tools need different instructions, you can create another row instead of adding it to the tools array
 INSERT INTO "challenge_content" ("challengeId", "tools", "acceptanceCriteria", "instructions", "stretchGoals")
 VALUES
-  (1, '["JS", "TS", "React"]', '["Counter value can be increased and decreased.", "Counter UI is updated to reflect changes."]', '[]', '["Add a reset button.", "Have the count number data be persistant even when reloading the page.", "Every 10th click the counter color should change green, then back to normal after the count changes again."]'),
+  (1, '["JS", "TS", "React"]', '["Two buttons exists on the page called `Increment` and `Decrement`", "Counter value can be increased and decreased.", "Counter UI is updated to reflect changes."]', '[]', '["Add a reset button.", "Have the count number data be persistant even when reloading the page.", "Every 10th click the counter color should change green, then back to normal after the count changes again."]'),
   (1, '["Unity"]', '["Counter value can be increased and decreased.", "Counter UI is updated to reflect changes."]', '[]', '["Add a reset button.", "Have the count number data be persistant even when reloading the scene.", "Every 10th click the counter color should change green, then go back to normal after the count changes again."]'),
   (2, '["JS", "TS", "React"]', '["Can fill out the form and submit it, the result should be displayed inside the <div> with the class `output`.", "Can’t skip required fields."]', '[]', '["Use the confirm() method to ask if the user is sure they want to submit.", "Use EmailJS to send yourself an email containing the form results."]');
