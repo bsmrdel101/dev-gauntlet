@@ -51,7 +51,7 @@
       {/if}
 
       {#if content.stretchGoals.length > 0}
-        <h3>stretchGoals</h3>
+        <h3>Stretch Goals</h3>
         <ul>
           {#each content.stretchGoals as goal }
             <li>{ goal }</li>
