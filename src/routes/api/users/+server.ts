@@ -10,7 +10,7 @@ config();
 export const POST: RequestHandler = async (req: any) => {
   const reader = req.request.body.getReader();
   let result = await reader.read();
-  let chunks = [];
+  const chunks = [];
   while (!result.done) {
     chunks.push(result.value);
     result = await reader.read();

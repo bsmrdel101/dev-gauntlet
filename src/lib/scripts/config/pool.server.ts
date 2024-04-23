@@ -12,4 +12,4 @@ const pool = new Pool({
   port: Number(process.env.PG_PORT)
 });
 
-export let client = await pool.connect();
+export const client = await pool.connect();

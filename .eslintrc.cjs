@@ -28,6 +28,10 @@ module.exports = {
   	}
   ],
   rules: {
-    'indent': ['error', 2]
+    'indent': ['error', 2],
+	'no-undef': 'off',
+	'no-unused-vars': 'off',
+	'@typescript-eslint/no-unused-vars': 'off',
+	'@typescript-eslint/no-explicit-any': 'off',
   }
 };

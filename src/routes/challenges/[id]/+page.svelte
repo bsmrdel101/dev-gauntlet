@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import Layout from "$lib/components/Layout.svelte";
+  import Editor from "$lib/components/Editor.svelte";
   import { api } from '$lib/scripts/config/api';
   import { capitalize } from '$lib/scripts/tools/utils';
   import { onMount } from 'svelte';
@@ -8,6 +9,7 @@
 
   let challenge: Challenge;
   let selectedTool: string;
+  const webEditorCompatible = ['JS', 'TS', 'React'];
   
 
   onMount(async () => {
@@ -19,13 +21,14 @@
 
 <Layout title={challenge && challenge.title}>
   {#if challenge}
+    <div>
     <h3 class={`challenge__difficulty challenge__difficulty--${challenge.difficulty}`}>{ capitalize(challenge.difficulty) }</h3>
     <h1 class="challenge__title">{ challenge.title } <span>{ challenge.platform }</span></h1>
     <img class="challenge__cover-img" src={challenge.image} alt={challenge.image} loading="lazy" draggable="false" />
     <div class="challenge__tool-btn-container">
       {#each challenge.challengeContent as content}
         {#each content.tools as tool}
-          <button class="challenge__tool-btn">
+          <button class="challenge__tool-btn" on:click={() => selectedTool = tool}>
             <img src={`/images/${tool.toLowerCase()}.svg`} alt="Icon" />{ tool }
           </button>
         {/each}
@@ -59,6 +62,9 @@
         </ul>
       {/if}
     {/each}
+    </div>
+
+    {#if webEditorCompatible.includes(selectedTool)}<Editor />{/if}
   {/if}
 </Layout>
 
